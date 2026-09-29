@@ -31,16 +31,25 @@ stages and history entries.
 
 ## Free-plan fit
 
-The initial synthetic dataset will contain approximately 10 candidates,
-3 vacancies, 2 recruiters, 6 stages, 12 applications, and 30 stage
-history entries: 63 records across the base. This is below Airtable
-Free's 1,000-record-per-base limit. Manual transfers of this small
-dataset should also stay below the 1,000-API-calls-per-workspace monthly
-limit; actual usage will be checked in workspace settings.
+The current synthetic dataset has 4 candidates, 3 vacancies, 2 recruiters,
+6 stages, 5 applications, and 10 stage history entries: 30 records across
+the base. Manual transfers keep API usage modest; actual usage should be
+checked in Airtable workspace settings.
 
-## Decisions deferred
+## Implemented transfer
 
-The exact transfer tool, field mapping, treatment of deleted Airtable
-records, and recovery steps after a failed transfer will be decided
-before implementing the transfer. n8n will be introduced only if a
-specific need justifies it.
+`src/sync-airtable-to-postgres.mts` reads all pages of the six Airtable
+tables. Its field mapping targets the tables defined in `sql/schema.sql`.
+Each reporting row uses the Airtable record ID as its primary key, and
+the transfer uses `INSERT ... ON CONFLICT DO UPDATE` to copy new and changed
+records. Candidates, vacancies, recruiters, and stages are loaded before
+applications; stage history is loaded last to satisfy foreign keys.
+
+All PostgreSQL writes occur in one transaction. A database write failure
+identifies the table and record, rolls back the run, and leaves the previous
+reporting copy intact. After correcting the cause, rerun the manual transfer
+and compare table counts and known records with Airtable.
+
+The transfer does not delete PostgreSQL rows when their Airtable records
+are deleted. Deletion reconciliation is deferred. n8n remains out of scope
+unless a specific need justifies it.
