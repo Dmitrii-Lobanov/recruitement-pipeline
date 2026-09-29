@@ -1,10 +1,7 @@
+import { isRecord } from "./is-record.mts";
 import { STAGES, type Stage } from "./stage-rules.mts";
 
 const STAGES_TABLE = "Recruitment Stages";
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
 
 function isStage(value: unknown): value is Stage {
   return (

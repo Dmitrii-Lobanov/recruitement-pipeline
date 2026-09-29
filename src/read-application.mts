@@ -1,3 +1,5 @@
+import { isRecord } from "./is-record.mts";
+
 const APPLICATIONS_TABLE_ID = "tblTqz73hVy4mAHRe";
 
 export type ApplicationRecord = {
@@ -5,10 +7,6 @@ export type ApplicationRecord = {
   applicationLabel: string;
   currentStageId: string;
 };
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
 
 export async function readApplication(
   baseId: string,
