@@ -13,8 +13,8 @@ in America/Guayaquil. Results based on today's date will change later.
 | Recruiters | 2 |
 | Recruitment Stages | 6 |
 | Applications | 4 |
-| Stage History | 8 |
-| Total | 27 |
+| Stage History | 9 |
+| Total | 28 |
 
 Finance Coordinator is Closed and has no applications. Luis Moreno is a
 candidate without an application. These records help test cases where a
@@ -41,6 +41,7 @@ vacancy or candidate exists independently of an application.
 | HIST-006 | APP-004 | Applied | Screening | 2026-09-21 10:00 |
 | HIST-007 | APP-004 | Screening | Interview | 2026-09-23 14:00 |
 | HIST-008 | APP-004 | Interview | Hired | 2026-09-25 16:00 |
+| HIST-009 | APP-001 | Screening | Interview | 2026-09-29 13:28 |
 
 ## Expected results
 
