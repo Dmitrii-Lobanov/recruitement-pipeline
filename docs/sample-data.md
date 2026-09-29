@@ -12,9 +12,9 @@ in America/Guayaquil. Results based on today's date will change later.
 | Vacancies | 3 |
 | Recruiters | 2 |
 | Recruitment Stages | 6 |
-| Applications | 4 |
-| Stage History | 9 |
-| Total | 28 |
+| Applications | 5 |
+| Stage History | 10 |
+| Total | 30 |
 
 Finance Coordinator is Closed and has no applications. Luis Moreno is a
 candidate without an application. These records help test cases where a
@@ -28,6 +28,7 @@ vacancy or candidate exists independently of an application.
 | APP-002 | Maya Chen | HR Operations Specialist | Sam Patel | Applied | 2026-09-29 |
 | APP-003 | Jordan Lee | Data Analyst | Alex Rivera | Applied | None |
 | APP-004 | Priya Shah | HR Operations Specialist | Sam Patel | Hired | 2026-09-26 |
+| APP-005 | Luis Moreno | Data Analyst | Alex Rivera | Applied | None
 
 ## Stage history
 
@@ -42,6 +43,7 @@ vacancy or candidate exists independently of an application.
 | HIST-007 | APP-004 | Screening | Interview | 2026-09-23 14:00 |
 | HIST-008 | APP-004 | Interview | Hired | 2026-09-25 16:00 |
 | HIST-009 | APP-001 | Screening | Interview | 2026-09-29 13:28 |
+HIST-010 | APP-005 | None | Applied | 29/9/2026 13:47 |
 
 ## Expected results
 
