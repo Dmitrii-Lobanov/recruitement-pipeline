@@ -16,9 +16,8 @@ in America/Guayaquil. Results based on today's date will change later.
 | Stage History | 10 |
 | Total | 30 |
 
-Finance Coordinator is Closed and has no applications. Luis Moreno is a
-candidate without an application. These records help test cases where a
-vacancy or candidate exists independently of an application.
+Finance Coordinator is Closed and has no applications. This record helps test
+the rule that new applications require an open vacancy.
 
 ## Applications
 
@@ -28,7 +27,7 @@ vacancy or candidate exists independently of an application.
 | APP-002 | Maya Chen | HR Operations Specialist | Sam Patel | Applied | 2026-09-29 |
 | APP-003 | Jordan Lee | Data Analyst | Alex Rivera | Applied | None |
 | APP-004 | Priya Shah | HR Operations Specialist | Sam Patel | Hired | 2026-09-26 |
-| APP-005 | Luis Moreno | Data Analyst | Alex Rivera | Applied | None
+| APP-005 | Luis Moreno | Data Analyst | Alex Rivera | Applied | None |
 
 ## Stage history
 
@@ -43,14 +42,14 @@ vacancy or candidate exists independently of an application.
 | HIST-007 | APP-004 | Screening | Interview | 2026-09-23 14:00 |
 | HIST-008 | APP-004 | Interview | Hired | 2026-09-25 16:00 |
 | HIST-009 | APP-001 | Screening | Interview | 2026-09-29 13:28 |
-HIST-010 | APP-005 | None | Applied | 29/9/2026 13:47 |
+| HIST-010 | APP-005 | None | Applied | 2026-09-29 13:47 |
 
 ## Expected results
 
 - As of 2026-09-29, APP-001 is overdue by one calendar day.
-- APP-002 is due today, APP-003 has no follow-up date, and APP-004 is
-  terminal; none of these three is overdue.
-- Data Analyst has one application at Interview and one at Applied.
+- APP-002 is due today, APP-003 and APP-005 have no follow-up date, and
+  APP-004 is terminal; none of these four is overdue.
+- Data Analyst has one application at Interview and two at Applied.
 - HR Operations Specialist has one application at Applied and one at Hired.
 - For the date range 2026-09-01 inclusive to 2026-10-01 exclusive,
   HR Operations Specialist has one application that entered Hired.
