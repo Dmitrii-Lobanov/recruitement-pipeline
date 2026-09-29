@@ -24,7 +24,7 @@ vacancy or candidate exists independently of an application.
 
 | Label | Candidate | Vacancy | Recruiter | Current stage | Follow-up date |
 |---|---|---|---|---|---|
-| APP-001 | Maya Chen | Data Analyst | Alex Rivera | Screening | 2026-09-28 |
+| APP-001 | Maya Chen | Data Analyst | Alex Rivera | Interview | 2026-09-28 |
 | APP-002 | Maya Chen | HR Operations Specialist | Sam Patel | Applied | 2026-09-29 |
 | APP-003 | Jordan Lee | Data Analyst | Alex Rivera | Applied | None |
 | APP-004 | Priya Shah | HR Operations Specialist | Sam Patel | Hired | 2026-09-26 |
@@ -48,7 +48,7 @@ vacancy or candidate exists independently of an application.
 - As of 2026-09-29, APP-001 is overdue by one calendar day.
 - APP-002 is due today, APP-003 has no follow-up date, and APP-004 is
   terminal; none of these three is overdue.
-- Data Analyst has one application at Screening and one at Applied.
+- Data Analyst has one application at Interview and one at Applied.
 - HR Operations Specialist has one application at Applied and one at Hired.
 - For the date range 2026-09-01 inclusive to 2026-10-01 exclusive,
   HR Operations Specialist has one application that entered Hired.
