@@ -10,7 +10,7 @@ A small recruitment workflow using Airtable as the operational source of truth a
 - Lists overdue follow-ups for active applications using the business date in `America/Guayaquil`.
 - Copies Airtable records to PostgreSQL for three SQL reports: pipeline counts, overdue follow-ups, and hires in a date range.
 
-The workflow helpers are TypeScript modules, not a web interface or command-line application. Airtable remains the source of truth; PostgreSQL is used for read-only reporting.
+Use the interactive command-line app to manage recruitment records. Airtable remains the source of truth; PostgreSQL is used for reporting.
 
 ## Data model
 
@@ -36,6 +36,22 @@ AIRTABLE_TOKEN=your_personal_access_token
 ```
 
 `.env` and `node_modules/` are ignored by Git. Do not commit credentials.
+
+## Use the app
+
+From the project directory, run:
+
+```bash
+npm start
+```
+
+Type a menu number and press Enter. The app lists records so you can select candidates, vacancies, recruiters, and applications by number; you do not need to look up Airtable record IDs.
+
+For example, choose `10` to create an application. Select a candidate, an open vacancy, and a recruiter. At the final prompt, type **`YES`** and press Enter to save it. Any other response cancels the operation. Choose `1` afterward to verify that the application appears.
+
+Use `11` to change an application's stage, `12` to set or clear a follow-up date, and `14` to show overdue follow-ups. Options `4`–`9` manage candidates, vacancies, and recruiters; `2` shows an application's stage history; `13` reassigns its recruiter. Choose `0` to exit.
+
+Choose `15` to copy Airtable data to PostgreSQL, then `16` to run the SQL reports. Set up PostgreSQL as described below before using these options. If an application or stage write reports an uncertain result, choose `17` to retry it with the same labels.
 
 ## Set up PostgreSQL
 
@@ -66,7 +82,7 @@ node --env-file=.env src/sync-airtable-to-postgres.mts
 
 The transfer reads all Airtable pages, then writes the six tables in dependency order inside one PostgreSQL transaction. It uses Airtable record IDs as keys and updates matching rows on repeat runs. If a database write fails, the transaction rolls back.
 
-Run the same transfer command again to verify a repeat run. For the documented sample, the expected counts are 4 candidates, 3 vacancies, 2 recruiters, 6 stages, 5 applications, and 10 history entries.
+Run the same transfer command again to verify a repeat run. The original documented sample has 4 candidates, 3 vacancies, 2 recruiters, 6 stages, 5 applications, and 10 history entries. Counts will increase as you create records through the app.
 
 ## Run reports
 
@@ -91,11 +107,11 @@ The overdue SQL report uses the current business date, so its result changes ove
 - `src/change-stage.mts` checks the transition, records stage history, and updates the application’s current stage. Reuse the same history label when retrying an uncertain result.
 - `src/list-overdue-followups.mts` reads Airtable and calculates overdue follow-ups without changing records.
 
-The stage rules are in `src/stage-rules.mts`. The workflow functions accept Airtable record IDs rather than display names.
+The interactive menu is in `src/cli.mts`. It resolves menu selections to Airtable record IDs before calling the workflow functions. The stage rules are in `src/stage-rules.mts`.
 
 ## Current limits
 
-- Airtable base setup and transfers are manual; there is no scheduled sync or user interface.
+- Airtable base setup and transfers are manual; there is no scheduled sync or web interface.
 - Workflow checks assume a single operator. Airtable does not provide a transaction across the history and application writes, so the stage-change helper includes retry and conflict checks but does not guarantee atomic updates under concurrent writers.
 - The PostgreSQL transfer inserts and updates records. It does not remove PostgreSQL rows when their Airtable records are deleted.
 - Application creation currently fails closed if the Airtable Applications list has more than one page; that workflow needs pagination before scaling past 100 applications.
